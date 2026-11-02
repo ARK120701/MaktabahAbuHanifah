@@ -218,136 +218,6 @@ header {
   margin-bottom: 5px;
 }
 
-/* CATEGORY CARDS */
-
-.category-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-}
-
-.category-card {
-  display: block;
-  width: 100%;
-  font: inherit;
-  color: inherit;
-  text-align: center;
-  background: white;
-  padding: 34px 18px;
-  border: 1px solid var(--border);
-  transition: 0.25s;
-}
-
-.category-card:hover,
-.category-card.active {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 25px rgba(46,28,48,0.08);
-  border-color: var(--light-purple);
-}
-
-.category-card.active {
-  background: var(--purple);
-  color: white;
-}
-
-.category-card.active .author {
-  color: #D4C8D2;
-}
-
-.category-card h3 {
-  font-size: 20px;
-  margin-bottom: 4px;
-}
-
-.no-results {
-  display: none;
-  text-align: center;
-  font-size: 13px;
-  color: #807680;
-  margin-top: 25px;
-}
-
-/* BOOK PLACEHOLDER + EXTRAS */
-
-.book-image {
-  position: relative;
-  overflow: hidden;
-}
-
-.book-placeholder {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 16px;
-  font-family: 'Playfair Display', serif;
-  font-size: 15px;
-  line-height: 1.4;
-  color: var(--purple);
-  background: linear-gradient(160deg, #F1ECEF, #E4D8E0);
-  border-left: 6px solid var(--purple);
-  overflow: hidden;
-}
-
-.book-image img {
-  position: relative;
-  z-index: 1;
-}
-
-.book-card {
-  display: flex;
-  flex-direction: column;
-}
-
-.book-card .desc {
-  font-size: 12px;
-  color: #6F656F;
-  margin-top: 8px;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-.book-card .price {
-  margin-top: auto;
-  padding-top: 12px;
-}
-
-.price s {
-  font-weight: 400;
-  color: #9A8F99;
-  margin-right: 6px;
-}
-
-.add-cart:disabled {
-  background: #B9AEB7;
-  cursor: not-allowed;
-}
-
-.book-count {
-  text-align: center;
-  font-size: 12px;
-  color: #807680;
-  margin-top: 25px;
-}
-
-.load-more {
-  display: none;
-  margin: 15px auto 0;
-  background: transparent;
-  border: 1px solid var(--purple);
-  color: var(--purple);
-  padding: 12px 28px;
-  font-size: 13px;
-}
-
-.load-more:hover {
-  background: var(--purple);
-  color: white;
-}
-
 /* FEATURED BOOKS */
 
 .section {
@@ -592,10 +462,6 @@ footer a:hover {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .category-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
   .about {
     grid-template-columns: 1fr;
   }
@@ -640,14 +506,9 @@ footer a:hover {
     border-right: none;
   }
 
-  .book-grid,
-  .category-grid {
+  .book-grid {
     grid-template-columns: 1fr 1fr;
     gap: 10px;
-  }
-
-  .category-card {
-    padding: 24px 10px;
   }
 
   .book-card {
@@ -699,7 +560,7 @@ footer a:hover {
     <div class="nav-links">
       <a href="#">Home</a>
       <a href="#books">Books</a>
-      <a href="#categories">Sections</a>
+      <a href="#categories">Categories</a>
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
     </div>
@@ -773,40 +634,30 @@ footer a:hover {
 
   <div class="section-heading">
     <h2>Explore Categories</h2>
-    <p>Browse our collection by section.</p>
+    <p>Browse our collection by subject.</p>
   </div>
 
-  <div class="category-grid">
+  <div class="book-grid">
 
-    <button type="button" class="category-card" data-filter="kids">
-      <h3>For Kids</h3>
-      <p class="author">Children's Books</p>
-    </button>
+    <div class="book-card">
+      <h3>Fiqh</h3>
+      <p class="author">Islamic Jurisprudence</p>
+    </div>
 
-    <button type="button" class="category-card" data-filter="english">
-      <h3>English Books</h3>
-      <p class="author">Books in English</p>
-    </button>
+    <div class="book-card">
+      <h3>Hadith</h3>
+      <p class="author">Prophetic Traditions</p>
+    </div>
 
-    <button type="button" class="category-card" data-filter="arabic">
-      <h3>Arabic Books</h3>
-      <p class="author">الكتب العربية</p>
-    </button>
+    <div class="book-card">
+      <h3>Tafsir</h3>
+      <p class="author">Qur'anic Commentary</p>
+    </div>
 
-    <button type="button" class="category-card" data-filter="urdu">
-      <h3>Urdu Books</h3>
-      <p class="author">اردو کتابیں</p>
-    </button>
-
-    <button type="button" class="category-card" data-filter="ismaeel">
-      <h3>Ismaeel Books</h3>
-      <p class="author">Ismaeel Collection</p>
-    </button>
-
-    <button type="button" class="category-card" data-filter="all">
-      <h3>All Items</h3>
-      <p class="author">Browse Everything</p>
-    </button>
+    <div class="book-card">
+      <h3>Aqidah</h3>
+      <p class="author">Islamic Creed</p>
+    </div>
 
   </div>
 
@@ -816,17 +667,85 @@ footer a:hover {
 <section class="section" id="books">
 
   <div class="section-heading">
-    <h2 id="books-title">All Items</h2>
-    <p id="books-subtitle">Explore selected works from our collection.</p>
+    <h2>Featured Books</h2>
+    <p>Explore selected works from our collection.</p>
   </div>
 
   <div class="book-grid" id="product-grid">
+
+    <!-- PRODUCT 1 -->
+    <div class="book-card" data-title="Sahih al-Bukhari">
+
+      <div class="book-image">
+        <!-- IMAGE PLACEHOLDER: Sahih al-Bukhari cover -->
+        <img src="images/bukhari.jpg"
+             alt="Sahih al-Bukhari book cover">
+      </div>
+
+      <h3>Sahih al-Bukhari</h3>
+      <p class="author">Imam al-Bukhari</p>
+      <div class="price">$34.99</div>
+
+      <button class="add-cart" data-name="Sahih al-Bukhari">
+        Add to Cart
+      </button>
+    </div>
+
+    <!-- PRODUCT 2 -->
+    <div class="book-card" data-title="Sahih Muslim">
+
+      <div class="book-image">
+        <!-- IMAGE PLACEHOLDER: Sahih Muslim cover -->
+        <img src="images/muslim.jpg"
+             alt="Sahih Muslim book cover">
+      </div>
+
+      <h3>Sahih Muslim</h3>
+      <p class="author">Imam Muslim</p>
+      <div class="price">$32.99</div>
+
+      <button class="add-cart" data-name="Sahih Muslim">
+        Add to Cart
+      </button>
+    </div>
+
+    <!-- PRODUCT 3 -->
+    <div class="book-card" data-title="Tafsir Ibn Kathir">
+
+      <div class="book-image">
+        <!-- IMAGE PLACEHOLDER: Tafsir Ibn Kathir cover -->
+        <img src="images/ibn-kathir.jpg"
+             alt="Tafsir Ibn Kathir book cover">
+      </div>
+
+      <h3>Tafsir Ibn Kathir</h3>
+      <p class="author">Ibn Kathir</p>
+      <div class="price">$29.99</div>
+
+      <button class="add-cart" data-name="Tafsir Ibn Kathir">
+        Add to Cart
+      </button>
+    </div>
+
+    <!-- PRODUCT 4 -->
+    <div class="book-card" data-title="Fath al-Bari">
+
+      <div class="book-image">
+        <!-- IMAGE PLACEHOLDER: Fath al-Bari cover -->
+        <img src="images/fath-al-bari.jpg"
+             alt="Fath al-Bari book cover">
+      </div>
+
+      <h3>Fath al-Bari</h3>
+      <p class="author">Ibn Hajar al-Asqalani</p>
+      <div class="price">$49.99</div>
+
+      <button class="add-cart" data-name="Fath al-Bari">
+        Add to Cart
+      </button>
+    </div>
+
   </div>
-
-  <p class="no-results" id="no-results">No books found &mdash; check back soon.</p>
-
-  <p class="book-count" id="book-count"></p>
-  <button type="button" class="load-more" id="load-more">Show more books</button>
 
 </section>
 
@@ -914,118 +833,51 @@ footer a:hover {
 
 </footer>
 
-<script src="books.js"></script>
 <script>
 
-// BOOK CATALOG (data lives in books.js)
-
-const PAGE_SIZE = 24;
-const SECTION_NAMES = {
-  kids: "For Kids", english: "English Books", arabic: "Arabic Books",
-  urdu: "Urdu Books", ismaeel: "Ismaeel Books", all: "All Items"
-};
+// SIMPLE SHOPPING CART DEMO
 
 let cart = [];
-let activeFilter = "all";
-let shown = PAGE_SIZE;
 
 const cartCount = document.getElementById("cart-count");
-const grid = document.getElementById("product-grid");
-const searchInput = document.getElementById("search");
-const noResults = document.getElementById("no-results");
-const booksTitle = document.getElementById("books-title");
-const bookCount = document.getElementById("book-count");
-const loadMore = document.getElementById("load-more");
 
-function esc(str) {
-  return String(str).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-}
+document.querySelectorAll(".add-cart").forEach(button => {
 
-function money(n) {
-  return "$" + Number(n).toFixed(2);
-}
+  button.addEventListener("click", () => {
 
-function cardHTML(b) {
-  const price = b.was
-    ? `<s>${money(b.was)}</s>${money(b.price)}`
-    : money(b.price);
-  return `
-    <div class="book-card">
-      <div class="book-image">
-        <div class="book-placeholder" dir="auto">${esc(b.title)}</div>
-        <img src="images/books/${b.id}.jpg" alt="${esc(b.title)} book cover" loading="lazy"
-             onerror="this.remove()">
-      </div>
-      <h3 dir="auto">${esc(b.title)}</h3>
-      ${b.author ? `<p class="author" dir="auto">${esc(b.author)}</p>` : ""}
-      ${b.desc ? `<p class="desc" dir="auto">${esc(b.desc)}</p>` : ""}
-      <div class="price">${price}</div>
-      <button class="add-cart" data-id="${b.id}" ${b.oos ? "disabled" : ""}>
-        ${b.oos ? "Out of Stock" : "Add to Cart"}
-      </button>
-    </div>`;
-}
+    const bookName = button.dataset.name;
 
-function render() {
+    cart.push(bookName);
 
-  const q = searchInput.value.trim().toLowerCase();
+    cartCount.textContent = cart.length;
 
-  const matches = BOOKS.filter(b =>
-    (activeFilter === "all" || b.cat === activeFilter) &&
-    (!q || (b.title + " " + b.author).toLowerCase().includes(q))
-  );
+    button.textContent = "Added ✓";
 
-  grid.innerHTML = matches.slice(0, shown).map(cardHTML).join("");
-
-  noResults.style.display = matches.length === 0 ? "block" : "none";
-  bookCount.textContent = matches.length
-    ? `Showing ${Math.min(shown, matches.length)} of ${matches.length} books`
-    : "";
-  loadMore.style.display = matches.length > shown ? "block" : "none";
-
-}
-
-// ADD TO CART (event delegation)
-
-grid.addEventListener("click", e => {
-
-  const button = e.target.closest(".add-cart");
-  if (!button || button.disabled) return;
-
-  cart.push(Number(button.dataset.id));
-  cartCount.textContent = cart.length;
-
-  button.textContent = "Added ✓";
-  setTimeout(() => { button.textContent = "Add to Cart"; }, 1200);
-
-});
-
-// SEARCH, SECTIONS, SHOW MORE
-
-searchInput.addEventListener("input", () => { shown = PAGE_SIZE; render(); });
-
-loadMore.addEventListener("click", () => { shown += PAGE_SIZE; render(); });
-
-document.querySelectorAll(".category-card").forEach(card => {
-
-  card.addEventListener("click", () => {
-
-    activeFilter = card.dataset.filter;
-    shown = PAGE_SIZE;
-
-    document.querySelectorAll(".category-card").forEach(c => c.classList.remove("active"));
-    card.classList.add("active");
-
-    booksTitle.textContent = SECTION_NAMES[activeFilter];
-    render();
-
-    document.getElementById("books").scrollIntoView({ behavior: "smooth" });
+    setTimeout(() => {
+      button.textContent = "Add to Cart";
+    }, 1200);
 
   });
 
 });
 
-render();
+// BOOK SEARCH
+
+document.getElementById("search").addEventListener("input", function() {
+
+  const searchValue = this.value.toLowerCase();
+
+  document.querySelectorAll("#product-grid .book-card").forEach(book => {
+
+    const title = book.dataset.title.toLowerCase();
+
+    book.style.display = title.includes(searchValue)
+      ? ""
+      : "none";
+
+  });
+
+});
 
 // NEWSLETTER DEMO
 
