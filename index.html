@@ -267,6 +267,87 @@ header {
   margin-top: 25px;
 }
 
+/* BOOK PLACEHOLDER + EXTRAS */
+
+.book-image {
+  position: relative;
+  overflow: hidden;
+}
+
+.book-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  font-family: 'Playfair Display', serif;
+  font-size: 15px;
+  line-height: 1.4;
+  color: var(--purple);
+  background: linear-gradient(160deg, #F1ECEF, #E4D8E0);
+  border-left: 6px solid var(--purple);
+  overflow: hidden;
+}
+
+.book-image img {
+  position: relative;
+  z-index: 1;
+}
+
+.book-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.book-card .desc {
+  font-size: 12px;
+  color: #6F656F;
+  margin-top: 8px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.book-card .price {
+  margin-top: auto;
+  padding-top: 12px;
+}
+
+.price s {
+  font-weight: 400;
+  color: #9A8F99;
+  margin-right: 6px;
+}
+
+.add-cart:disabled {
+  background: #B9AEB7;
+  cursor: not-allowed;
+}
+
+.book-count {
+  text-align: center;
+  font-size: 12px;
+  color: #807680;
+  margin-top: 25px;
+}
+
+.load-more {
+  display: none;
+  margin: 15px auto 0;
+  background: transparent;
+  border: 1px solid var(--purple);
+  color: var(--purple);
+  padding: 12px 28px;
+  font-size: 13px;
+}
+
+.load-more:hover {
+  background: var(--purple);
+  color: white;
+}
+
 /* FEATURED BOOKS */
 
 .section {
@@ -740,82 +821,12 @@ footer a:hover {
   </div>
 
   <div class="book-grid" id="product-grid">
-
-    <!-- PRODUCT 1 -->
-    <div class="book-card" data-title="Sahih al-Bukhari" data-category="arabic">
-
-      <div class="book-image">
-        <!-- IMAGE PLACEHOLDER: Sahih al-Bukhari cover -->
-        <img src="images/bukhari.jpg"
-             alt="Sahih al-Bukhari book cover">
-      </div>
-
-      <h3>Sahih al-Bukhari</h3>
-      <p class="author">Imam al-Bukhari</p>
-      <div class="price">$34.99</div>
-
-      <button class="add-cart" data-name="Sahih al-Bukhari">
-        Add to Cart
-      </button>
-    </div>
-
-    <!-- PRODUCT 2 -->
-    <div class="book-card" data-title="Sahih Muslim" data-category="arabic">
-
-      <div class="book-image">
-        <!-- IMAGE PLACEHOLDER: Sahih Muslim cover -->
-        <img src="images/muslim.jpg"
-             alt="Sahih Muslim book cover">
-      </div>
-
-      <h3>Sahih Muslim</h3>
-      <p class="author">Imam Muslim</p>
-      <div class="price">$32.99</div>
-
-      <button class="add-cart" data-name="Sahih Muslim">
-        Add to Cart
-      </button>
-    </div>
-
-    <!-- PRODUCT 3 -->
-    <div class="book-card" data-title="Tafsir Ibn Kathir" data-category="english">
-
-      <div class="book-image">
-        <!-- IMAGE PLACEHOLDER: Tafsir Ibn Kathir cover -->
-        <img src="images/ibn-kathir.jpg"
-             alt="Tafsir Ibn Kathir book cover">
-      </div>
-
-      <h3>Tafsir Ibn Kathir</h3>
-      <p class="author">Ibn Kathir</p>
-      <div class="price">$29.99</div>
-
-      <button class="add-cart" data-name="Tafsir Ibn Kathir">
-        Add to Cart
-      </button>
-    </div>
-
-    <!-- PRODUCT 4 -->
-    <div class="book-card" data-title="Fath al-Bari" data-category="arabic">
-
-      <div class="book-image">
-        <!-- IMAGE PLACEHOLDER: Fath al-Bari cover -->
-        <img src="images/fath-al-bari.jpg"
-             alt="Fath al-Bari book cover">
-      </div>
-
-      <h3>Fath al-Bari</h3>
-      <p class="author">Ibn Hajar al-Asqalani</p>
-      <div class="price">$49.99</div>
-
-      <button class="add-cart" data-name="Fath al-Bari">
-        Add to Cart
-      </button>
-    </div>
-
   </div>
 
-  <p class="no-results" id="no-results">No books in this section yet &mdash; check back soon.</p>
+  <p class="no-results" id="no-results">No books found &mdash; check back soon.</p>
+
+  <p class="book-count" id="book-count"></p>
+  <button type="button" class="load-more" id="load-more">Show more books</button>
 
 </section>
 
@@ -903,81 +914,118 @@ footer a:hover {
 
 </footer>
 
+<script src="books.js"></script>
 <script>
 
-// SIMPLE SHOPPING CART DEMO
+// BOOK CATALOG (data lives in books.js)
+
+const PAGE_SIZE = 24;
+const SECTION_NAMES = {
+  kids: "For Kids", english: "English Books", arabic: "Arabic Books",
+  urdu: "Urdu Books", ismaeel: "Ismaeel Books", all: "All Items"
+};
 
 let cart = [];
+let activeFilter = "all";
+let shown = PAGE_SIZE;
 
 const cartCount = document.getElementById("cart-count");
-
-document.querySelectorAll(".add-cart").forEach(button => {
-
-  button.addEventListener("click", () => {
-
-    const bookName = button.dataset.name;
-
-    cart.push(bookName);
-
-    cartCount.textContent = cart.length;
-
-    button.textContent = "Added ✓";
-
-    setTimeout(() => {
-      button.textContent = "Add to Cart";
-    }, 1200);
-
-  });
-
-});
-
-// SECTION FILTER + BOOK SEARCH
-
-let activeFilter = "all";
-
+const grid = document.getElementById("product-grid");
 const searchInput = document.getElementById("search");
 const noResults = document.getElementById("no-results");
 const booksTitle = document.getElementById("books-title");
+const bookCount = document.getElementById("book-count");
+const loadMore = document.getElementById("load-more");
 
-function applyFilters() {
+function esc(str) {
+  return String(str).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+}
 
-  const searchValue = searchInput.value.toLowerCase();
-  let visible = 0;
+function money(n) {
+  return "$" + Number(n).toFixed(2);
+}
 
-  document.querySelectorAll("#product-grid .book-card").forEach(book => {
+function cardHTML(b) {
+  const price = b.was
+    ? `<s>${money(b.was)}</s>${money(b.price)}`
+    : money(b.price);
+  return `
+    <div class="book-card">
+      <div class="book-image">
+        <div class="book-placeholder" dir="auto">${esc(b.title)}</div>
+        <img src="images/books/${b.id}.jpg" alt="${esc(b.title)} book cover" loading="lazy"
+             onerror="this.remove()">
+      </div>
+      <h3 dir="auto">${esc(b.title)}</h3>
+      ${b.author ? `<p class="author" dir="auto">${esc(b.author)}</p>` : ""}
+      ${b.desc ? `<p class="desc" dir="auto">${esc(b.desc)}</p>` : ""}
+      <div class="price">${price}</div>
+      <button class="add-cart" data-id="${b.id}" ${b.oos ? "disabled" : ""}>
+        ${b.oos ? "Out of Stock" : "Add to Cart"}
+      </button>
+    </div>`;
+}
 
-    const matchesTitle = book.dataset.title.toLowerCase().includes(searchValue);
-    const matchesSection = activeFilter === "all" || book.dataset.category === activeFilter;
-    const show = matchesTitle && matchesSection;
+function render() {
 
-    book.style.display = show ? "" : "none";
-    if (show) visible++;
+  const q = searchInput.value.trim().toLowerCase();
 
-  });
+  const matches = BOOKS.filter(b =>
+    (activeFilter === "all" || b.cat === activeFilter) &&
+    (!q || (b.title + " " + b.author).toLowerCase().includes(q))
+  );
 
-  noResults.style.display = visible === 0 ? "block" : "none";
+  grid.innerHTML = matches.slice(0, shown).map(cardHTML).join("");
+
+  noResults.style.display = matches.length === 0 ? "block" : "none";
+  bookCount.textContent = matches.length
+    ? `Showing ${Math.min(shown, matches.length)} of ${matches.length} books`
+    : "";
+  loadMore.style.display = matches.length > shown ? "block" : "none";
 
 }
 
-searchInput.addEventListener("input", applyFilters);
+// ADD TO CART (event delegation)
+
+grid.addEventListener("click", e => {
+
+  const button = e.target.closest(".add-cart");
+  if (!button || button.disabled) return;
+
+  cart.push(Number(button.dataset.id));
+  cartCount.textContent = cart.length;
+
+  button.textContent = "Added ✓";
+  setTimeout(() => { button.textContent = "Add to Cart"; }, 1200);
+
+});
+
+// SEARCH, SECTIONS, SHOW MORE
+
+searchInput.addEventListener("input", () => { shown = PAGE_SIZE; render(); });
+
+loadMore.addEventListener("click", () => { shown += PAGE_SIZE; render(); });
 
 document.querySelectorAll(".category-card").forEach(card => {
 
   card.addEventListener("click", () => {
 
     activeFilter = card.dataset.filter;
+    shown = PAGE_SIZE;
 
     document.querySelectorAll(".category-card").forEach(c => c.classList.remove("active"));
     card.classList.add("active");
 
-    booksTitle.textContent = card.querySelector("h3").textContent;
-    applyFilters();
+    booksTitle.textContent = SECTION_NAMES[activeFilter];
+    render();
 
     document.getElementById("books").scrollIntoView({ behavior: "smooth" });
 
   });
 
 });
+
+render();
 
 // NEWSLETTER DEMO
 
