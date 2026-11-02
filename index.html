@@ -218,6 +218,55 @@ header {
   margin-bottom: 5px;
 }
 
+/* CATEGORY CARDS */
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.category-card {
+  display: block;
+  width: 100%;
+  font: inherit;
+  color: inherit;
+  text-align: center;
+  background: white;
+  padding: 34px 18px;
+  border: 1px solid var(--border);
+  transition: 0.25s;
+}
+
+.category-card:hover,
+.category-card.active {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(46,28,48,0.08);
+  border-color: var(--light-purple);
+}
+
+.category-card.active {
+  background: var(--purple);
+  color: white;
+}
+
+.category-card.active .author {
+  color: #D4C8D2;
+}
+
+.category-card h3 {
+  font-size: 20px;
+  margin-bottom: 4px;
+}
+
+.no-results {
+  display: none;
+  text-align: center;
+  font-size: 13px;
+  color: #807680;
+  margin-top: 25px;
+}
+
 /* FEATURED BOOKS */
 
 .section {
@@ -462,6 +511,10 @@ footer a:hover {
     grid-template-columns: repeat(2, 1fr);
   }
 
+  .category-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
   .about {
     grid-template-columns: 1fr;
   }
@@ -506,9 +559,14 @@ footer a:hover {
     border-right: none;
   }
 
-  .book-grid {
+  .book-grid,
+  .category-grid {
     grid-template-columns: 1fr 1fr;
     gap: 10px;
+  }
+
+  .category-card {
+    padding: 24px 10px;
   }
 
   .book-card {
@@ -560,7 +618,7 @@ footer a:hover {
     <div class="nav-links">
       <a href="#">Home</a>
       <a href="#books">Books</a>
-      <a href="#categories">Categories</a>
+      <a href="#categories">Sections</a>
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
     </div>
@@ -634,30 +692,40 @@ footer a:hover {
 
   <div class="section-heading">
     <h2>Explore Categories</h2>
-    <p>Browse our collection by subject.</p>
+    <p>Browse our collection by section.</p>
   </div>
 
-  <div class="book-grid">
+  <div class="category-grid">
 
-    <div class="book-card">
-      <h3>Fiqh</h3>
-      <p class="author">Islamic Jurisprudence</p>
-    </div>
+    <button type="button" class="category-card" data-filter="kids">
+      <h3>For Kids</h3>
+      <p class="author">Children's Books</p>
+    </button>
 
-    <div class="book-card">
-      <h3>Hadith</h3>
-      <p class="author">Prophetic Traditions</p>
-    </div>
+    <button type="button" class="category-card" data-filter="english">
+      <h3>English Books</h3>
+      <p class="author">Books in English</p>
+    </button>
 
-    <div class="book-card">
-      <h3>Tafsir</h3>
-      <p class="author">Qur'anic Commentary</p>
-    </div>
+    <button type="button" class="category-card" data-filter="arabic">
+      <h3>Arabic Books</h3>
+      <p class="author">الكتب العربية</p>
+    </button>
 
-    <div class="book-card">
-      <h3>Aqidah</h3>
-      <p class="author">Islamic Creed</p>
-    </div>
+    <button type="button" class="category-card" data-filter="urdu">
+      <h3>Urdu Books</h3>
+      <p class="author">اردو کتابیں</p>
+    </button>
+
+    <button type="button" class="category-card" data-filter="ismaeel">
+      <h3>Ismaeel Books</h3>
+      <p class="author">Ismaeel Collection</p>
+    </button>
+
+    <button type="button" class="category-card" data-filter="all">
+      <h3>All Items</h3>
+      <p class="author">Browse Everything</p>
+    </button>
 
   </div>
 
@@ -667,14 +735,14 @@ footer a:hover {
 <section class="section" id="books">
 
   <div class="section-heading">
-    <h2>Featured Books</h2>
-    <p>Explore selected works from our collection.</p>
+    <h2 id="books-title">All Items</h2>
+    <p id="books-subtitle">Explore selected works from our collection.</p>
   </div>
 
   <div class="book-grid" id="product-grid">
 
     <!-- PRODUCT 1 -->
-    <div class="book-card" data-title="Sahih al-Bukhari">
+    <div class="book-card" data-title="Sahih al-Bukhari" data-category="arabic">
 
       <div class="book-image">
         <!-- IMAGE PLACEHOLDER: Sahih al-Bukhari cover -->
@@ -692,7 +760,7 @@ footer a:hover {
     </div>
 
     <!-- PRODUCT 2 -->
-    <div class="book-card" data-title="Sahih Muslim">
+    <div class="book-card" data-title="Sahih Muslim" data-category="arabic">
 
       <div class="book-image">
         <!-- IMAGE PLACEHOLDER: Sahih Muslim cover -->
@@ -710,7 +778,7 @@ footer a:hover {
     </div>
 
     <!-- PRODUCT 3 -->
-    <div class="book-card" data-title="Tafsir Ibn Kathir">
+    <div class="book-card" data-title="Tafsir Ibn Kathir" data-category="english">
 
       <div class="book-image">
         <!-- IMAGE PLACEHOLDER: Tafsir Ibn Kathir cover -->
@@ -728,7 +796,7 @@ footer a:hover {
     </div>
 
     <!-- PRODUCT 4 -->
-    <div class="book-card" data-title="Fath al-Bari">
+    <div class="book-card" data-title="Fath al-Bari" data-category="arabic">
 
       <div class="book-image">
         <!-- IMAGE PLACEHOLDER: Fath al-Bari cover -->
@@ -746,6 +814,8 @@ footer a:hover {
     </div>
 
   </div>
+
+  <p class="no-results" id="no-results">No books in this section yet &mdash; check back soon.</p>
 
 </section>
 
@@ -861,19 +931,49 @@ document.querySelectorAll(".add-cart").forEach(button => {
 
 });
 
-// BOOK SEARCH
+// SECTION FILTER + BOOK SEARCH
 
-document.getElementById("search").addEventListener("input", function() {
+let activeFilter = "all";
 
-  const searchValue = this.value.toLowerCase();
+const searchInput = document.getElementById("search");
+const noResults = document.getElementById("no-results");
+const booksTitle = document.getElementById("books-title");
+
+function applyFilters() {
+
+  const searchValue = searchInput.value.toLowerCase();
+  let visible = 0;
 
   document.querySelectorAll("#product-grid .book-card").forEach(book => {
 
-    const title = book.dataset.title.toLowerCase();
+    const matchesTitle = book.dataset.title.toLowerCase().includes(searchValue);
+    const matchesSection = activeFilter === "all" || book.dataset.category === activeFilter;
+    const show = matchesTitle && matchesSection;
 
-    book.style.display = title.includes(searchValue)
-      ? ""
-      : "none";
+    book.style.display = show ? "" : "none";
+    if (show) visible++;
+
+  });
+
+  noResults.style.display = visible === 0 ? "block" : "none";
+
+}
+
+searchInput.addEventListener("input", applyFilters);
+
+document.querySelectorAll(".category-card").forEach(card => {
+
+  card.addEventListener("click", () => {
+
+    activeFilter = card.dataset.filter;
+
+    document.querySelectorAll(".category-card").forEach(c => c.classList.remove("active"));
+    card.classList.add("active");
+
+    booksTitle.textContent = card.querySelector("h3").textContent;
+    applyFilters();
+
+    document.getElementById("books").scrollIntoView({ behavior: "smooth" });
 
   });
 
