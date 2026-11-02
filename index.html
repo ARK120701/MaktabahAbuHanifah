@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maktabah Abu Hanifah | Islamic Bookstore</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --purple: #40283F;
+  --deep-purple: #2E1C30;
+  --light-purple: #A9849D;
+  --cream: #F8F5F1;
+  --white: #FFFFFF;
+  --border: #E8E0E5;
+  --text: #302630;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--cream);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  line-height: 1.6;
+}
+
+h1, h2, h3 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 500;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+}
+
+/* ANNOUNCEMENT BAR */
+
+.announcement {
+  background: var(--deep-purple);
+  color: white;
+  text-align: center;
+  padding: 9px;
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+/* NAVIGATION */
+
+header {
+  background: var(--cream);
+  border-bottom: 1px solid var(--border);
+}
+
+.navbar {
+  max-width: 1400px;
+  margin: auto;
+  padding: 20px 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+}
+
+.logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 23px;
+  line-height: 1.15;
+  color: var(--purple);
+  font-weight: 600;
+}
+
+.logo small {
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-size: 9px;
+  letter-spacing: 2px;
+  margin-top: 5px;
+  font-weight: 400;
+}
+
+.nav-links {
+  display: flex;
+  gap: 30px;
+  font-size: 13px;
+}
+
+.nav-links a:hover {
+  color: var(--light-purple);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.search {
+  padding: 9px 12px;
+  border: 1px solid var(--border);
+  background: transparent;
+  border-radius: 3px;
+  width: 180px;
+}
+
+.cart {
+  border: none;
+  background: var(--purple);
+  color: white;
+  padding: 9px 14px;
+  border-radius: 3px;
+}
+
+/* HERO */
+
+.hero {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  min-height: 490px;
+  align-items: center;
+  background: #F2ECEF;
+}
+
+.hero-content {
+  padding: 65px 10%;
+}
+
+.eyebrow {
+  color: var(--light-purple);
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 3px;
+  margin-bottom: 20px;
+}
+
+.hero h1 {
+  font-size: clamp(42px, 5vw, 72px);
+  line-height: 1.05;
+  color: var(--purple);
+  margin-bottom: 20px;
+}
+
+.hero h2 {
+  font-size: 19px;
+  font-style: italic;
+  margin-bottom: 15px;
+}
+
+.hero p {
+  font-size: 14px;
+  color: #655B63;
+  max-width: 420px;
+  margin-bottom: 28px;
+}
+
+.primary-btn {
+  background: var(--purple);
+  color: white;
+  padding: 14px 26px;
+  border: none;
+  font-size: 13px;
+  display: inline-block;
+  transition: 0.2s;
+}
+
+.primary-btn:hover {
+  background: var(--deep-purple);
+}
+
+/* HERO IMAGE
+   REPLACE THIS BACKGROUND WITH YOUR HERO BOOKSTORE PHOTO
+*/
+
+.hero-image {
+  min-height: 490px;
+  background:
+    url('images/hero-books.jpg') center/cover no-repeat;
+}
+
+/* BENEFITS */
+
+.benefits {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 24px 5%;
+  background: white;
+  border-bottom: 1px solid var(--border);
+  text-align: center;
+}
+
+.benefit {
+  border-right: 1px solid var(--border);
+  padding: 8px;
+  font-size: 12px;
+  color: var(--purple);
+}
+
+.benefit:last-child {
+  border: none;
+}
+
+.benefit span {
+  display: block;
+  font-size: 23px;
+  margin-bottom: 5px;
+}
+
+/* FEATURED BOOKS */
+
+.section {
+  max-width: 1400px;
+  padding: 65px 5%;
+  margin: auto;
+}
+
+.section-heading {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.section-heading h2 {
+  font-size: 34px;
+  color: var(--purple);
+}
+
+.section-heading p {
+  font-size: 13px;
+  color: #807680;
+  margin-top: 8px;
+}
+
+.book-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.book-card {
+  text-align: center;
+  background: white;
+  padding: 18px;
+  border: 1px solid var(--border);
+  transition: 0.25s;
+}
+
+.book-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(46,28,48,0.08);
+}
+
+.book-image {
+  height: 235px;
+  background: #F1ECEF;
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* BOOK COVER IMAGE PLACEHOLDER
+   REPLACE EACH BOOK IMAGE WITH ITS ACTUAL COVER
+*/
+
+.book-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.book-card h3 {
+  font-size: 17px;
+  margin-bottom: 4px;
+}
+
+.author {
+  font-size: 12px;
+  color: #817781;
+}
+
+.price {
+  margin: 12px 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.add-cart {
+  background: var(--purple);
+  color: white;
+  border: none;
+  padding: 11px;
+  width: 100%;
+  font-size: 12px;
+}
+
+.add-cart:hover {
+  background: var(--deep-purple);
+}
+
+/* ABOUT SECTION */
+
+.about {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: var(--deep-purple);
+  color: white;
+}
+
+.about-image {
+  min-height: 350px;
+  background: url('images/about-books.jpg') center/cover no-repeat;
+}
+
+.about-content {
+  padding: 65px 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.about-content h2 {
+  font-size: 34px;
+  margin-bottom: 18px;
+}
+
+.about-content p {
+  font-size: 14px;
+  color: #E5DDE5;
+  margin-bottom: 25px;
+}
+
+.about-content a {
+  border: 1px solid #BFA1B8;
+  padding: 11px 22px;
+  width: fit-content;
+  font-size: 12px;
+}
+
+/* NEWSLETTER */
+
+.newsletter {
+  background: #EFE7ED;
+  padding: 45px 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+}
+
+.newsletter h2 {
+  color: var(--purple);
+  font-size: 27px;
+}
+
+.newsletter p {
+  font-size: 12px;
+  color: #716572;
+}
+
+.newsletter form {
+  display: flex;
+  gap: 10px;
+}
+
+.newsletter input {
+  padding: 13px;
+  width: 260px;
+  border: 1px solid var(--border);
+  background: white;
+}
+
+.newsletter button {
+  background: var(--purple);
+  color: white;
+  border: none;
+  padding: 13px 22px;
+}
+
+/* FOOTER */
+
+footer {
+  background: var(--deep-purple);
+  color: white;
+  padding: 50px 5% 20px;
+}
+
+.footer-grid {
+  max-width: 1400px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 40px;
+}
+
+footer h3 {
+  font-size: 19px;
+  margin-bottom: 16px;
+}
+
+footer p, footer a {
+  display: block;
+  font-size: 12px;
+  color: #D4C8D2;
+  margin-bottom: 9px;
+}
+
+footer a:hover {
+  color: white;
+}
+
+.footer-bottom {
+  border-top: 1px solid #5A4358;
+  margin-top: 35px;
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: #C8B9C6;
+}
+
+.languages {
+  display: flex;
+  gap: 15px;
+}
+
+/* MOBILE RESPONSIVENESS */
+
+@media(max-width: 850px) {
+  .nav-links {
+    display: none;
+  }
+
+  .search {
+    width: 120px;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-content {
+    padding: 55px 7%;
+  }
+
+  .hero-image {
+    min-height: 300px;
+  }
+
+  .book-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .about {
+    grid-template-columns: 1fr;
+  }
+
+  .about-image {
+    min-height: 260px;
+  }
+
+  .newsletter {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media(max-width: 500px) {
+  .navbar {
+    padding: 16px 5%;
+  }
+
+  .logo {
+    font-size: 18px;
+  }
+
+  .search {
+    display: none;
+  }
+
+  .hero h1 {
+    font-size: 43px;
+  }
+
+  .benefits {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+
+  .benefit:nth-child(2) {
+    border-right: none;
+  }
+
+  .book-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .book-card {
+    padding: 9px;
+  }
+
+  .book-image {
+    height: 165px;
+  }
+
+  .newsletter form {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .newsletter input {
+    width: 100%;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ANNOUNCEMENT -->
+<div class="announcement">
+  Welcome to Maktabah Abu Hanifah
+</div>
+
+<!-- HEADER -->
+<header>
+  <nav class="navbar">
+
+    <a href="#" class="logo">
+      Maktabah<br>Abu Hanifah
+      <small>THE ISLAMIC BOOKSTORE</small>
+    </a>
+
+    <div class="nav-links">
+      <a href="#">Home</a>
+      <a href="#books">Books</a>
+      <a href="#categories">Categories</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+
+    <div class="nav-actions">
+      <input class="search" id="search"
+        type="search" placeholder="Search books..."
+        aria-label="Search books">
+      <button class="cart" type="button">
+        Cart (<span id="cart-count">0</span>)
+      </button>
+    </div>
+
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+
+  <div class="hero-content">
+    <div class="eyebrow">Knowledge. Faith. Guidance.</div>
+
+    <h1>Maktabah<br>Abu Hanifah</h1>
+
+    <h2>Classical Islamic Scholarship.<br>
+    Carefully Selected.</h2>
+
+    <p>
+      Explore a collection of Islamic literature
+      spanning Fiqh, Hadith, Tafsir, Aqidah,
+      and the Arabic sciences.
+    </p>
+
+    <a href="#books" class="primary-btn">
+      Browse Our Collection →
+    </a>
+  </div>
+
+  <!-- HERO IMAGE GOES HERE -->
+  <div class="hero-image"></div>
+
+</section>
+
+<!-- BENEFITS -->
+<section class="benefits">
+
+  <div class="benefit">
+    <span>▤</span>
+    Authentic Books
+  </div>
+
+  <div class="benefit">
+    <span>◇</span>
+    Secure Checkout
+  </div>
+
+  <div class="benefit">
+    <span>♧</span>
+    Shipping
+  </div>
+
+  <div class="benefit">
+    <span>✉</span>
+    Customer Support
+  </div>
+
+</section>
+
+<!-- CATEGORIES -->
+<section class="section" id="categories">
+
+  <div class="section-heading">
+    <h2>Explore Categories</h2>
+    <p>Browse our collection by subject.</p>
+  </div>
+
+  <div class="book-grid">
+
+    <div class="book-card">
+      <h3>Fiqh</h3>
+      <p class="author">Islamic Jurisprudence</p>
+    </div>
+
+    <div class="book-card">
+      <h3>Hadith</h3>
+      <p class="author">Prophetic Traditions</p>
+    </div>
+
+    <div class="book-card">
+      <h3>Tafsir</h3>
+      <p class="author">Qur'anic Commentary</p>
+    </div>
+
+    <div class="book-card">
+      <h3>Aqidah</h3>
+      <p class="author">Islamic Creed</p>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- FEATURED BOOKS -->
+<section class="section" id="books">
+
+  <div class="section-heading">
+    <h2>Featured Books</h2>
+    <p>Explore selected works from our collection.</p>
+  </div>
+
+  <div class="book-grid" id="product-grid">
+
+    <!-- PRODUCT 1 -->
+    <div class="book-card" data-title="Sahih al-Bukhari">
+
+      <div class="book-image">
+        <!-- IMAGE PLACEHOLDER: Sahih al-Bukhari cover -->
+        <img src="images/bukhari.jpg"
+             alt="Sahih al-Bukhari book cover">
+      </div>
+
+      <h3>Sahih al-Bukhari</h3>
+      <p class="author">Imam al-Bukhari</p>
+      <div class="price">$34.99</div>
+
+      <button class="add-cart" data-name="Sahih al-Bukhari">
+        Add to Cart
+      </button>
+    </div>
+
+    <!-- PRODUCT 2 -->
+    <div class="book-card" data-title="Sahih Muslim">
+
+      <div class="book-image">
+        <!-- IMAGE PLACEHOLDER: Sahih Muslim cover -->
+        <img src="images/muslim.jpg"
+             alt="Sahih Muslim book cover">
+      </div>
+
+      <h3>Sahih Muslim</h3>
+      <p class="author">Imam Muslim</p>
+      <div class="price">$32.99</div>
+
+      <button class="add-cart" data-name="Sahih Muslim">
+        Add to Cart
+      </button>
+    </div>
+
+    <!-- PRODUCT 3 -->
+    <div class="book-card" data-title="Tafsir Ibn Kathir">
+
+      <div class="book-image">
+        <!-- IMAGE PLACEHOLDER: Tafsir Ibn Kathir cover -->
+        <img src="images/ibn-kathir.jpg"
+             alt="Tafsir Ibn Kathir book cover">
+      </div>
+
+      <h3>Tafsir Ibn Kathir</h3>
+      <p class="author">Ibn Kathir</p>
+      <div class="price">$29.99</div>
+
+      <button class="add-cart" data-name="Tafsir Ibn Kathir">
+        Add to Cart
+      </button>
+    </div>
+
+    <!-- PRODUCT 4 -->
+    <div class="book-card" data-title="Fath al-Bari">
+
+      <div class="book-image">
+        <!-- IMAGE PLACEHOLDER: Fath al-Bari cover -->
+        <img src="images/fath-al-bari.jpg"
+             alt="Fath al-Bari book cover">
+      </div>
+
+      <h3>Fath al-Bari</h3>
+      <p class="author">Ibn Hajar al-Asqalani</p>
+      <div class="price">$49.99</div>
+
+      <button class="add-cart" data-name="Fath al-Bari">
+        Add to Cart
+      </button>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+
+  <!-- ABOUT IMAGE PLACEHOLDER -->
+  <div class="about-image"></div>
+
+  <div class="about-content">
+
+    <div class="eyebrow">About Our Bookstore</div>
+
+    <h2>About Maktabah Abu Hanifah</h2>
+
+    <p>
+      Our mission is to make authentic Islamic scholarship
+      accessible through a carefully selected collection
+      of classical and contemporary Islamic literature.
+      We aim to preserve knowledge and encourage learning.
+    </p>
+
+    <a href="#">Learn More →</a>
+
+  </div>
+
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter">
+
+  <div>
+    <h2>Stay Updated</h2>
+    <p>Be the first to hear about new arrivals and collections.</p>
+  </div>
+
+  <form id="newsletter-form">
+    <input type="email" placeholder="Your email address" required>
+    <button type="submit">Subscribe</button>
+  </form>
+
+</section>
+
+<!-- FOOTER -->
+<footer id="contact">
+
+  <div class="footer-grid">
+
+    <div>
+      <h3>Maktabah Abu Hanifah</h3>
+      <p>Classical Islamic Scholarship. Carefully Selected.</p>
+    </div>
+
+    <div>
+      <h3>Quick Links</h3>
+      <a href="#">Home</a>
+      <a href="#books">Books</a>
+      <a href="#categories">Categories</a>
+      <a href="#about">About</a>
+    </div>
+
+    <div>
+      <h3>Customer Care</h3>
+      <a href="#">Shipping & Returns</a>
+      <a href="#">FAQs</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+    </div>
+
+    <div>
+      <h3>Languages</h3>
+      <div class="languages">
+        <a href="#">English</a>
+        <a href="#">العربية</a>
+        <a href="#">اردو</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2026 Maktabah Abu Hanifah. All rights reserved.</p>
+    <p>Knowledge. Faith. Guidance.</p>
+  </div>
+
+</footer>
+
+<script>
+
+// SIMPLE SHOPPING CART DEMO
+
+let cart = [];
+
+const cartCount = document.getElementById("cart-count");
+
+document.querySelectorAll(".add-cart").forEach(button => {
+
+  button.addEventListener("click", () => {
+
+    const bookName = button.dataset.name;
+
+    cart.push(bookName);
+
+    cartCount.textContent = cart.length;
+
+    button.textContent = "Added ✓";
+
+    setTimeout(() => {
+      button.textContent = "Add to Cart";
+    }, 1200);
+
+  });
+
+});
+
+// BOOK SEARCH
+
+document.getElementById("search").addEventListener("input", function() {
+
+  const searchValue = this.value.toLowerCase();
+
+  document.querySelectorAll("#product-grid .book-card").forEach(book => {
+
+    const title = book.dataset.title.toLowerCase();
+
+    book.style.display = title.includes(searchValue)
+      ? ""
+      : "none";
+
+  });
+
+});
+
+// NEWSLETTER DEMO
+
+document.getElementById("newsletter-form").addEventListener("submit", function(e) {
+  e.preventDefault();
+  alert("Thank you for subscribing!");
+  this.reset();
+});
+
+</script>
+
+</body>
+</html>
